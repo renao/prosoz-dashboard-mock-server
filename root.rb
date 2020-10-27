@@ -30,6 +30,8 @@ end
 
 get '/gitlab/projects/:project_id/merge_requests' do |project|
   state = params[:state]
+  wip = params[:wip]
+  load_mock_file 'mocks/gitlab/gitlab_open_merge_requests_without_wip.json' if wip == 'no'
   load_mock_file 'mocks/gitlab/gitlab_open_merge_requests.json' if state == 'opened'
 end
 
